@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Formulaire {% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+    <p>This is appended to the master sidebar.</p>
+{% endblock %}
+
+{% block content %}
+    {% for post in posts %}
+        <article>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.excerpt }}</p>
+            <p><a href="{{ path('post.show', {slug: post.slug}) }}">Lire la suite</a></p>
+        </article>
+{% endblock %}

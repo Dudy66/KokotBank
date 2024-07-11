@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kokot Bank</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <!-- Barre de navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Votre Banque est là pour vous</a>
+            <!-- Liens de navigation -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('home') }}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('dashboard_accounts') }}">Mes Comptes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">À propos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('contact') }}">Contact</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main role="main" class="container">
+        <!-- Contenu principal -->
+        <div class="jumbotron">
+            <h1>Bienvenue Chez KokotBank</h1>
+            <p class="lead">Découvrez nos services bancaires en ligne.</p>
+            <a class="btn btn-primary btn-lg" href="{{ path('app_login') }}" role="button">Se connecter</a>
+            <a class="btn btn-primary btn-lg" href="{{ path('register') }}" role="button">S'enregistrer</a>
+        </div>
+
+        {% for type, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ type }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+    </div>
+</main>
+    </main>
+
+    <footer class="footer">
+        <!-- Pied de page -->
+        <div class="container">
+            <span class="text-muted">KokotBank &copy; 2023</span>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kokot Bank</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <!-- Barre de navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Votre Banque est la pour vous</a>
+            <!-- Liens de navigation -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('home') }}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">À propos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('contact') }}">Contact</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main role="main" class="container">
+        <!-- Contenu principal -->
+        <div class="jumbotron">
+            <h1>Bienvenue Chez KokotBank</h1>
+            <p class="lead">Découvrez nos services bancaires en ligne.</p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Se connecter</a>
+        </div>
+    </main>
+
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1>Contact Form</h1>
+            {{ form_start(form, {'attr': {'class': 'mt-4'}}) }}
+            
+            <div class="mb-3">
+                {{ form_label(form.nom, 'Name', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.nom) }}
+            </div>
+            <div class="mb-3">
+                {{ form_label(form.prenom, 'Prenom', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.prenom) }}
+            </div>
+            
+            <div class="mb-3">
+                {{ form_label(form.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.email) }}
+            </div>
+            
+            <div class="mb-3">
+                {{ form_label(form.message, 'Message', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.message, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.message) }}
+            </div>
+            
+            {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+            
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+    <footer class="footer">
+        <!-- Pied de page -->
+        <div class="container">
+            <span class="text-muted">KokotBank &copy; 2023</span>
+        </div>
+    </footer>
+</body>
+</html>
+

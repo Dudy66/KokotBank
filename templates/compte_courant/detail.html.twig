@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du Compte Courant{% endblock %}
+
+{% block body %}
+    <h1>Détails du Compte Courant</h1>
+
+    <dl>
+        <dt>Numéro de Compte :</dt>
+        <dd>{{ compteCourant.numeroCompte }}</dd>
+
+        <dt>Solde :</dt>
+        <dd>{{ compteCourant.solde }} €</dd>
+
+        <dt>Découvert autorisé :</dt>
+        <dd>{{ compteCourant.decouvert }} €</dd>
+
+        <dt>Date d'ouverture :</dt>
+        <dd>{{ compteCourant.date_ouverture|date('Y-m-d') }}</dd>
+    </dl>
+
+    <a href="{{ path('compte_courant_operations', {'id': compteCourant.id}) }}">Voir les opérations</a>
+{% endblock %}

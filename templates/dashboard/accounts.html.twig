@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tableau de bord - Mes Comptes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    body {
+        padding-top: 56px; /* Pour compenser la hauteur de la barre de navigation fixe */
+    }
+
+    .jumbotron {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    .compte {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+
+    .compte h2 {
+        margin-top: 0;
+    }
+
+    .compte ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .compte li {
+        margin-bottom: 10px;
+    }
+
+    .numero-compte {
+        font-weight: bold;
+    }
+
+    .solde {
+        color: green;
+    }
+    .footer {
+        text-align: center;
+        padding: 10px 0;
+        background-color: #f5f5f5;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+    </style>
+</head>
+<body>
+
+<header>
+    <!-- Barre de navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Votre Banque est là pour vous</a>
+        <!-- Liens de navigation -->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('home') }}">Accueil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('dashboard_accounts') }}">Mes Comptes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('effectuer_virement') }}">Effectuer un Virement</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('contact') }}">Contact</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+    {# header de bienvenue #}     
+    <div>
+        
+        {% if app.user %}
+            <h1>Bienvenue,{{ app.user.genre }} {{ app.user.prenom }} {{ app.user.nom }}</h1>
+            {% if app.user.lastConnexion %}
+                <p>Dernière connexion le {{ app.user.lastConnexion|date('d/m/Y H:i:s') }}</p>
+            {% else %}
+                <p>Première connexion</p>
+            {% endif %}
+        {% else %}
+            <p>Utilisateur non identifié</p>
+        {% endif %}
+    </div>
+    {# affichage des comptes #}
+    <div id="comptes">
+    <h1>Mes Comptes</h1>
+
+    <div class="compte">
+        <h2>Compte Courant :</h2>
+        <ul>
+            {% for compteCourant in comptesCourants %}
+                <li>
+                    <p class="numero-compte">{{ compteCourant.numeroCompte }}</p>
+                    <p class="solde">Solde : {{ compteCourant.solde }}</p>
+                </li>
+            {% endfor %}  
+        </ul>
+    </div>
+
+    <div class="compte">
+        <h2>Compte Action :</h2>
+        <ul>
+            {% if compteAction is not null %}
+                <li>
+                    <p class="numero-compte">{{ compteAction.getNumeroCompteAction() }}</p>
+                    <p class="solde">Solde : {{ compteAction.getSolde() }}</p>
+                </li>
+            {% else %}
+                <p>Aucun compte action disponible</p>
+            {% endif %}
+        </ul>
+    </div>
+    
+</div>
+</main>
+    </main>
+
+    <footer class="footer">
+        <!-- Pied de page -->
+        <div class="container">
+            <span class="text-muted">KokotBank &copy; 2023</span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kokot Bank</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <!-- Barre de navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Votre Banque est la pour vous</a>
+            <!-- Liens de navigation -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('home') }}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">À propos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('contact') }}">Contact</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main role="main" class="container">
+        {# Contenu principal #}
+        <div class="jumbotron">
+            <h1>Bienvenue Chez KokotBank</h1>
+            <p class="lead">Découvrez nos services bancaires en ligne.</p>
+            <a class="btn btn-primary btn-lg" href="{{ path('app_login') }}" role="button">Se connecter</a>
+            <a class="btn btn-primary btn-lg" href="{{ path('register') }}" role="button">S'enregistrer</a>
+        </div>
+
+    {# Affichage du message dui succès après la connexion #}
+        {% if app.user %}
+            <div class="alert alert-success">
+                Bonjour {{ app.user.username }}! Vous êtes connecté.
+            </div>
+        {% endif %}
+
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        {#  Formulaire de connexion  #}
+        <div class="container">
+            {% block body %}
+                <form method="post" action="{{ path('app_login') }}">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    {% if app.user %}
+                        <div class="mb-3">
+                            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                        </div>
+                    {% endif %}
+
+                    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                    <label for="inputEmail">Email</label>
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                    <label for="inputPassword">Password</label>
+                    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                    <button class="btn btn-lg btn-primary" type="submit">Sign in</button>
+                </form>
+            {% endblock %}
+        </div>
+    </main>
+
+    <footer class="footer">
+        <!-- Pied de page -->
+        <div class="container">
+            <span class="text-muted">KokotBank &copy; 2023</span>
+        </div>
+    </footer>
+
+</body>
+</html>

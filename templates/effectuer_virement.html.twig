@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tableau de bord - Mes Comptes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <!-- Barre de navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Votre Banque est là pour vous</a>
+        <!-- Liens de navigation -->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('home') }}">Accueil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('dashboard_accounts') }}">Mes Comptes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('effectuer_virement') }}">Effectuer un Virements</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('contact') }}">Contact</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+    <form method="post" action="{{ path('effectuer_virement') }}">
+        <label for="sourceId">Compte source :</label>
+        <select id="sourceId" name="sourceId">
+            {% for compte in comptes %}
+                <option value="{{ compte.id }}">{{ compte.numeroCompte }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="destinataireId">Compte destinataire :</label>
+        <select id="destinataireId" name="destinataireId">
+            {% for compte in comptes %}
+                <option value="{{ compte.id }}">{{ compte.numeroCompte }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="montant">Montant :</label>
+        <input type="number" id="montant" name="montant">
+
+        <button type="submit">Effectuer le virement</button>
+    </form>
+
+<footer class="footer">
+    <!-- Pied de page -->
+    <div class="container">
+        <span class="text-muted">KokotBank &copy; 2023</span>
+    </div>
+</footer>
+</body>
+</html>

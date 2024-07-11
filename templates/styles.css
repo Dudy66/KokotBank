@@ -1,0 +1,47 @@
+body {
+    padding-top: 56px; /* Pour compenser la hauteur de la barre de navigation fixe */
+}
+
+.jumbotron {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.compte {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.compte h2 {
+    margin-top: 0;
+}
+
+.compte ul {
+    list-style: none;
+    padding: 0;
+}
+
+.compte li {
+    margin-bottom: 10px;
+}
+
+.numero-compte {
+    font-weight: bold;
+}
+
+.solde {
+    color: green;
+}
+
+
+
+.footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #f5f5f5;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
